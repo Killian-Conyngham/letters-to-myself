@@ -1,4 +1,5 @@
-# Essay 2: Recursive Thinking
+# Essay 2: Recursive Dreams
 
-Going deeper now...  
-<a href="essay3.md" class="expand-essay">Explore further</a>
+You've entered deeper into the essays.
+
+<a href="content/essay3.md" class="expand-essay">Read Essay 3</a>
