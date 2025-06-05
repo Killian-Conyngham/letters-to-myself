@@ -1,44 +1,48 @@
 /* Base layout */
 body {
-    font-family: sans-serif;
-    padding: 20px;
-    max-width: 700px;
-    margin: auto;
-    line-height: 1.6;
-    background-color: #f9f9f9;
-    color: #222;
-  }
-  
-  /* Recursive expansion style */
-  .expanded-essay {
-    margin-left: 20px;
-    border-left: 2px solid #ccc;
-    padding-left: 10px;
-    margin-top: 10px;
-    background-color: #fff;
-    padding-top: 10px;
-    padding-bottom: 10px;
-  }
-  
-  /* Headings */
-  h1, h2, h3 {
-    color: #444;
-    margin-top: 1.5em;
-  }
-  
-  /* Links */
-  a {
-    color: #0066cc;
-    text-decoration: none;
-  }
-  
-  a:hover {
-    text-decoration: underline;
-  }
-  
-  /* Optional: make recursive essays feel more "nested" visually */
-  .expanded-essay .expanded-essay {
-    border-color: #bbb;
-    background-color: #fdfdfd;
-  }
-  
+  font-family: sans-serif;
+  margin: 0;
+  padding: 40px 5vw;
+  line-height: 1.6;
+  background-color: #f9f9f9;
+  color: #222;
+}
+
+/* Content wrapper fills most of the screen */
+#main-content {
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+/* Recursive expansion style */
+.expanded-essay {
+  margin-left: 20px;
+  border-left: 2px solid #ccc;
+  padding-left: 10px;
+  margin-top: 10px;
+  background-color: #fff;
+  padding-top: 10px;
+  padding-bottom: 10px;
+}
+
+/* Headings */
+h1, h2, h3 {
+  color: #444;
+  margin-top: 1.5em;
+}
+
+/* Links */
+a {
+  color: #0066cc;
+  text-decoration: none;
+}
+
+a:hover {
+  text-decoration: underline;
+}
+
+/* Optional: make recursive essays feel more "nested" visually */
+.expanded-essay .expanded-essay {
+  border-color: #bbb;
+  background-color: #fdfdfd;
+}
