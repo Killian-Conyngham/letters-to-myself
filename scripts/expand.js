@@ -4,10 +4,11 @@ document.addEventListener("DOMContentLoaded", function () {
   contentDiv.addEventListener("click", function (e) {
     if (e.target && e.target.classList.contains("expand-essay")) {
       e.preventDefault();
+
       const link = e.target;
       const url = link.getAttribute("href");
 
-      // Avoid loading the same essay multiple times
+      // Prevent duplicate loads
       if (link.dataset.loaded === "true") return;
 
       const container = document.createElement("div");
@@ -26,28 +27,6 @@ document.addEventListener("DOMContentLoaded", function () {
           const html = marked.parse(markdown);
           container.innerHTML = html;
           link.dataset.loaded = "true";
-
-          // Enable recursive expansion within loaded content
-          container.querySelectorAll("a.expand-essay").forEach((a) => {
-            a.addEventListener("click", function (e) {
-              e.preventDefault();
-              if (a.dataset.loaded === "true") return;
-              const nestedContainer = document.createElement("div");
-              nestedContainer.classList.add("expanded-essay");
-              nestedContainer.innerText = "Loading...";
-              a.insertAdjacentElement("afterend", nestedContainer);
-
-              fetch(a.getAttribute("href"))
-                .then((res) => res.text())
-                .then((md) => {
-                  nestedContainer.innerHTML = marked.parse(md);
-                  a.dataset.loaded = "true";
-                })
-                .catch(() => {
-                  nestedContainer.innerText = "Failed to load content.";
-                });
-            });
-          });
         })
         .catch(() => {
           container.innerText = "Failed to load content.";
