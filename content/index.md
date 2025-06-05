@@ -1,3 +1,3 @@
 # Welcome
 
-Click to begin: [Essay 1](essay1.md){.expand-essay}
+Click to begin: <a href="content/essay3.md" class="expand-essay">Essay 1</a>
