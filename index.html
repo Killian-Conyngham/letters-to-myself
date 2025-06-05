@@ -1,26 +1,32 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Recursive Essays</title>
-  <style>
-    body { font-family: sans-serif; padding: 20px; max-width: 700px; margin: auto; }
-    .expanded-essay {
-      margin-left: 20px;
-      border-left: 2px solid #ccc;
-      padding-left: 10px;
-      margin-top: 10px;
-    }
-  </style>
+  <link rel="stylesheet" href="styles.css" />
 </head>
 <body>
-  <main id="content">
-    <h1>Recursive Essays</h1>
-    <div id="main-content">
-      <p><a href="content/essay1.md" class="expand-essay">Start Reading Essay 1</a></p>
-    </div>
-  </main>
+  <div id="main-content"></div>
+
   <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
   <script src="scripts/expand.js"></script>
+  <script>
+    // Auto-load initial essay into the landing page
+    window.addEventListener("DOMContentLoaded", function () {
+      const main = document.getElementById("main-content");
+
+      fetch("content/essay1.md")
+        .then((response) => response.text())
+        .then((markdown) => {
+          const html = marked.parse(markdown);
+          main.innerHTML = html;
+        })
+        .catch(() => {
+          main.innerText = "Failed to load the first essay.";
+        });
+    });
+  </script>
 </body>
 </html>
+
