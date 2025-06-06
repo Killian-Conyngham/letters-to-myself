@@ -41,6 +41,12 @@ a:hover {
   text-decoration: underline;
 }
 
+/* To remove stange space at the start of expanded essays */
+.expanded-essay > *:first-child {
+  margin-top: 0;
+}
+
+
 /* Optional: make recursive essays feel more "nested" visually */
 .expanded-essay .expanded-essay {
   border-color: #bbb;
