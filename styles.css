@@ -46,3 +46,18 @@ a:hover {
   border-color: #bbb;
   background-color: #fdfdfd;
 }
+
+.expand-essay {
+  color: #000;
+  background-color: #d3f4ff;
+  border: 1px solid #a0e0ff;
+  padding: 3px 6px;
+  border-radius: 4px;
+  text-decoration: none;
+  font-weight: 600;
+  transition: background-color 0.2s;
+}
+
+.expand-essay:hover {
+  background-color: #bdeeff;
+}
