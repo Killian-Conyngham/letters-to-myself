@@ -1,36 +1,32 @@
-document.addEventListener("DOMContentLoaded", function () {
-  const contentDiv = document.getElementById("main-content");
+document.addEventListener("click", function (e) {
+  if (e.target && e.target.classList.contains("expand-essay")) {
+    e.preventDefault();
 
-  contentDiv.addEventListener("click", function (e) {
-    if (e.target && e.target.classList.contains("expand-essay")) {
-      e.preventDefault();
+    const link = e.target;
+    const href = link.getAttribute("href");
+    const containerId = "container-" + href.replace(/[^a-zA-Z0-9]/g, "");
+    let existing = document.getElementById(containerId);
 
-      const link = e.target;
-      const url = link.getAttribute("href");
-
-      // Prevent duplicate loads
-      if (link.dataset.loaded === "true") return;
-
-      const container = document.createElement("div");
-      container.classList.add("expanded-essay");
-      container.innerText = "Loading...";
-      link.insertAdjacentElement("afterend", container);
-
-      fetch(url)
-        .then((response) => {
-          if (!response.ok) {
-            throw new Error("Network response was not ok");
-          }
-          return response.text();
-        })
-        .then((markdown) => {
-          const html = marked.parse(markdown);
-          container.innerHTML = html;
-          link.dataset.loaded = "true";
-        })
-        .catch(() => {
-          container.innerText = "Failed to load content.";
-        });
+    if (existing) {
+      // Already expanded — collapse it
+      existing.remove();
+      return;
     }
-  });
+
+    // Otherwise, expand
+    const newDiv = document.createElement("div");
+    newDiv.className = "expanded-essay";
+    newDiv.id = containerId;
+    newDiv.innerHTML = "<p>Loading...</p>";
+    link.insertAdjacentElement("afterend", newDiv);
+
+    fetch("content/" + href + ".md")
+      .then((response) => response.text())
+      .then((markdown) => {
+        newDiv.innerHTML = marked.parse(markdown);
+      })
+      .catch(() => {
+        newDiv.innerHTML = "<p>Failed to load content.</p>";
+      });
+  }
 });
