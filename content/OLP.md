@@ -63,5 +63,4 @@ I know to be forgiving, trusting and ultimately naive is to be truly brave.
 And I know that every single fucking second since I remembered the term unconditional love, it has gnawed at me like a rat in a lead bowl.
 
 So fuck it. Who cares that it is a nuclear bomb with the power to destroy me emotionally once again. Who cares that some old people say real love should be measured and deliberate, not impulsive and emotional. Who cares that I was hurt before and coddled myself with never again. There is simply too much on the line not to try. And I am going to try with every bloody bone in my body and every muscle in my heart.  
-And I am no longer scared to put that down in words.  
-Now I just have to go out and try again.
+And I am no longer scared to put that down in words.
