@@ -1,32 +1,56 @@
+// scripts/expand.js
 document.addEventListener("click", function (e) {
-  if (e.target && e.target.classList.contains("expand-essay")) {
-    e.preventDefault();
+  const link = e.target.closest("a.expand-essay");
+  if (!link) return;
 
-    const link = e.target;
-    const href = link.getAttribute("href");
-    const containerId = "container-" + href.replace(/[^a-zA-Z0-9]/g, "");
-    let existing = document.getElementById(containerId);
+  e.preventDefault();
 
-    if (existing) {
-      // Already expanded — collapse it
-      existing.remove();
-      return;
-    }
+  // Normalize href to a usable .md path
+  let href = link.getAttribute("href") || "";
 
-    // Otherwise, expand
-    const newDiv = document.createElement("div");
-    newDiv.className = "expanded-essay";
-    newDiv.id = containerId;
-    newDiv.innerHTML = "<p>Loading...</p>";
-    link.insertAdjacentElement("afterend", newDiv);
+  // If no extension, add .md
+  if (!/\.md(\?|#|$)/i.test(href)) href += ".md";
 
-    fetch("content/" + href + ".md")
-      .then((response) => response.text())
-      .then((markdown) => {
-        newDiv.innerHTML = marked.parse(markdown);
-      })
-      .catch(() => {
-        newDiv.innerHTML = "<p>Failed to load content.</p>";
-      });
+  // If it's a plain filename with no slash, prefix content/
+  // (keeps absolute/HTTP URLs and paths with folders untouched)
+  if (
+    !href.startsWith("http://") &&
+    !href.startsWith("https://") &&
+    !href.startsWith("/") &&
+    !href.includes("/")
+  ) {
+    href = "content/" + href;
   }
+
+  // Create a stable container id from the normalized href
+  const containerId = "exp-" + href.replace(/[^a-zA-Z0-9_-]/g, "");
+  const existing = document.getElementById(containerId);
+
+  // Toggle: if open, close it
+  if (existing) {
+    existing.remove();
+    return;
+  }
+
+  // Otherwise, create and load
+  const container = document.createElement("div");
+  container.className = "expanded-essay";
+  container.id = containerId;
+  container.textContent = "Loading…";
+  link.insertAdjacentElement("afterend", container);
+
+  fetch(href, { cache: "no-store" })
+    .then((res) => {
+      if (!res.ok) throw new Error(res.status + " " + res.statusText);
+      return res.text();
+    })
+    .then((markdown) => {
+      container.innerHTML = marked.parse(markdown);
+      // Remove top margin from first heading for nicer spacing
+      const first = container.firstElementChild;
+      if (first && /^H[1-3]$/.test(first.tagName)) first.style.marginTop = "0";
+    })
+    .catch((err) => {
+      container.textContent = "Failed to load content: " + err.message;
+    });
 });
