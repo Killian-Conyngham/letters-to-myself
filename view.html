@@ -1,0 +1,34 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>View Essay</title>
+  <link rel="stylesheet" href="styles.css" />
+  <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
+</head>
+<body>
+  <div id="content" style="max-width:900px;margin:24px auto;padding:12px;"></div>
+
+  <script>
+    const params = new URLSearchParams(location.search);
+    const file = params.get('file');
+    const target = document.getElementById('content');
+    if (!file) {
+      target.textContent = 'No file specified.';
+    } else {
+      fetch(file, { cache: 'no-store' })
+        .then(res => {
+          if (!res.ok) throw new Error(res.status + ' ' + res.statusText);
+          return res.text();
+        })
+        .then(md => {
+          target.innerHTML = marked.parse(md);
+        })
+        .catch(err => {
+          target.textContent = 'Failed to load: ' + err.message;
+        });
+    }
+  </script>
+</body>
+</html>

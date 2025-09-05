@@ -7,5 +7,11 @@ For now though, I will endeavour onwards, sinking untold hours of my life into t
 
 Not many people have read the things I have written, and not many will. That is fine. Because the people who do, who have and who will matter to me. And if even some of them take joy in these words, well I’d say that is enough. That’s about all the motivation I need. Now I just need to sit down and get writing."
 
-[Read in full](content/OWAO.html){target="_blank"}
-[Expand here](content/OWAO.md){.expand-essay}
+
+<div class="preview-links">
+  <!-- open full essay in a new tab (uses view.html approach) -->
+  <a href="OWAO.html" target="_blank" rel="noopener noreferrer">Read in full</a>
+  |
+  <!-- expand full essay inline (JS will intercept and insert/replace) -->
+  <a href="content/OWAO.md" class="expand-full">Expand here</a>
+</div>
