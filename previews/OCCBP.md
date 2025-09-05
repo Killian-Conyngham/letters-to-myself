@@ -6,5 +6,5 @@ What I feel I can take away is this: there is a subtle distinction between yearn
 
 So now, when I find myself dreaming about moving to Freiburg into an 8 person shared apartment, or giving Berkeley another shot for my PhD, or going back to Dublin to start something, or wherever else my mind has chosen as the Eden of the week, where I am convinced the idealised community will finally fall into place, all I can do is pause and laugh. Because I know that once I do arrive, there will be a million excuses as to why it's just not quite perfect. But also, perhaps even more so, because I know that if I did move to any of these places I would have an incredible time, meet incredible people and find a caring community. *The paradise I have been seeking was never a place I could go, but something within myself, and those around me*. Far from unachievable, it has actually always been there already. I just need to keep practicing the art of seeing it and tending to it."
 
-[Read in full](essays/OCCBP.html){target="_blank"}
-[Expand here](essays/OCCBP.md){.expand-essay}
+[Read in full](content/OCCBP.html){target="_blank"}
+[Expand here](content/OCCBP.md){.expand-essay}
