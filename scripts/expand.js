@@ -5,52 +5,36 @@ document.addEventListener("click", function (e) {
 
   e.preventDefault();
 
-  // Normalize href to a usable .md path
-  let href = link.getAttribute("href") || "";
+  const url = link.getAttribute("href");
+  let container = link.nextElementSibling;
 
-  // If no extension, add .md
-  if (!/\.md(\?|#|$)/i.test(href)) href += ".md";
-
-  // If it's a plain filename with no slash, prefix content/
-  // (keeps absolute/HTTP URLs and paths with folders untouched)
-  if (
-    !href.startsWith("http://") &&
-    !href.startsWith("https://") &&
-    !href.startsWith("/") &&
-    !href.includes("/")
-  ) {
-    href = "content/" + href;
+  // Create container if not already there
+  if (!container || !container.classList.contains("expanded-essay")) {
+    container = document.createElement("div");
+    container.className = "expanded-essay";
+    link.insertAdjacentElement("afterend", container);
   }
 
-  // Create a stable container id from the normalized href
-  const containerId = "exp-" + href.replace(/[^a-zA-Z0-9_-]/g, "");
-  const existing = document.getElementById(containerId);
-
-  // Toggle: if open, close it
-  if (existing) {
-    existing.remove();
+  // Toggle collapse
+  if (container.dataset.loaded === "true") {
+    container.innerHTML = "";
+    container.dataset.loaded = "false";
     return;
   }
 
-  // Otherwise, create and load
-  const container = document.createElement("div");
-  container.className = "expanded-essay";
-  container.id = containerId;
-  container.textContent = "Loading…";
-  link.insertAdjacentElement("afterend", container);
+  container.innerHTML = "<em>Loading…</em>";
 
-  fetch(href, { cache: "no-store" })
-    .then((res) => {
-      if (!res.ok) throw new Error(res.status + " " + res.statusText);
+  fetch(url, { cache: "no-store" })
+    .then(res => {
+      if (!res.ok) throw new Error(res.statusText);
       return res.text();
     })
-    .then((markdown) => {
-      container.innerHTML = marked.parse(markdown);
-      // Remove top margin from first heading for nicer spacing
-      const first = container.firstElementChild;
-      if (first && /^H[1-3]$/.test(first.tagName)) first.style.marginTop = "0";
+    .then(md => {
+      const html = marked.parse(md);
+      container.innerHTML = html;
+      container.dataset.loaded = "true";
     })
-    .catch((err) => {
-      container.textContent = "Failed to load content: " + err.message;
+    .catch(() => {
+      container.innerHTML = "<em>Failed to load content.</em>";
     });
 });
