@@ -1,8 +1,17 @@
-# On Home, Memory, ADEAEN and Narratives
+## On Home, Memory, ADEAEN and Narratives
+"[...]
 
 So let's conclude. Let's wrap this all up into a neat narrative and call it a day. This problem of narratives is a thorny one, I’ll admit it. And perhaps I am just fated to be stuck bouncing between them, never truly landing anywhere. But there is one narrative I have that bucks the trend. One beautiful, all encompassing narrative that solves all these problems. And it goes a little something like this:  
 Have your cake, and eat it too. Bake another, and eat that one as well. Or better yet, share it out. Bake a third and start a food fight. This is it. There is no second attempt at life. If you want to experience it, then this is your one shot. By no means be greedy, or step on the toes of others to get ahead. But by god don’t let the need to be consistent get in the way of the need to live, to experience. To try things and be wrong. And to try again. To hold all the opposing thoughts simultaneously in a superposition. To let each narrative be just that: a narrative, no more and no less. A lens to be put on when needed to help interpret the world and your place in it. Which can just as quickly be set aside to prevent it from clouding judgement or stealing joy.
 
 The fact is, all these grand narratives are far better at justifying decisions already made than helping make them in the moment. In recovering meaning in retrospect from a life that is fundamentally chaos and chance. The goal, you must remember, has never been to live a life where you made all the best decisions. The goal is to live a good life and to help others do the same. To step back from the needs of the now and focus on something bigger. And I must say, having some nice stories about you, your past, your future, and how it all just makes sense, fits together and just had to be, is a pretty fantastic way to make that happen. Or at the very least, surely it can’t hurt.
 
-And when it comes to making decisions. Well, the thing is, just make them. There are infinite possibilities. It’s insane really to think you can ever really know where a big change will take you. So sure, use some narratives, use some logic, seek some advice and use some intuition. But at the end of the day, it’s probably best just to follow your nose and your heart. And that, by design, is a nonsensical statement that can mean whatever you need it to mean in the moment.
+And when it comes to making decisions. Well, the thing is, just make them. There are infinite possibilities. It’s insane really to think you can ever really know where a big change will take you. So sure, use some narratives, use some logic, seek some advice and use some intuition. But at the end of the day, it’s probably best just to follow your nose and your heart. And that, by design, is a nonsensical statement that can mean whatever you need it to mean in the moment."
+
+<div class="preview-links">
+  <!-- open full essay in a new tab (uses view.html approach) -->
+  <a href="index.html" target="_blank" rel="noopener noreferrer">Read in new tab</a>
+  |
+  <!-- expand full essay inline (JS will intercept and insert/replace) -->
+  <a href="content/OHMAN.md" class="expand-full">Expand here</a>
+</div>
