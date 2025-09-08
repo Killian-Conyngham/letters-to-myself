@@ -5,7 +5,7 @@ TEMPLATE = """<!DOCTYPE html>
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>{title} – Recursive Essays</title>
+  <title>{title} – Letters to Myself</title>
   <link rel="stylesheet" href="styles.css" />
 </head>
 <body>
@@ -36,7 +36,7 @@ def generate_html_pages(content_dir="content", output_dir="."):
     for fname in os.listdir(content_dir):
         if fname.endswith(".md"):
             base = os.path.splitext(fname)[0]
-            title = base.replace("_", " ").title()
+            title = base.replace("_", " ").upper()
 
             html_content = TEMPLATE.format(title=title, filename=base)
             output_path = os.path.join(output_dir, f"{base}.html")
