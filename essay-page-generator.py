@@ -1,67 +1,68 @@
-# essay-page-generator.py
 import os
 
-TEMPLATE = """<body>
-  <button id="nav-toggle">☰ Essays</button>
-  <nav id="nav-menu">
-    <h2>All Essays</h2>
-    <ul>
-      {links}
-    </ul>
-  </nav>
+# HTML template for each essay page
+TEMPLATE = """<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>{title} – Recursive Essays</title>
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <div id="page-container">
+    <button id="nav-toggle">☰ Essays</button>
 
-  <div id="main-content"></div>
+    <nav id="nav-menu" class="hidden">
+      <h2>All Essays</h2>
+      <ul>
+        {links}
+      </ul>
+    </nav>
+
+    <main id="main-content"></main>
+  </div>
 
   <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
   <script src="scripts/expand.js"></script>
   <script>
-    window.addEventListener("DOMContentLoaded", function () {{
+    document.addEventListener("DOMContentLoaded", () => {{
       const main = document.getElementById("main-content");
 
       fetch("content/{filename}.md")
-        .then((response) => response.text())
-        .then((markdown) => {{
-          const html = marked.parse(markdown);
-          main.innerHTML = html;
-        }})
-        .catch(() => {{
-          main.innerText = "Failed to load essay.";
-        }});
+        .then(res => res.text())
+        .then(md => main.innerHTML = marked.parse(md))
+        .catch(() => main.innerText = "Failed to load essay.");
 
-      // toggle nav
-      document.getElementById("nav-toggle").addEventListener("click", () => {{
-        document.getElementById("nav-menu").classList.toggle("open");
+      const navToggle = document.getElementById("nav-toggle");
+      const navMenu = document.getElementById("nav-menu");
+
+      navToggle.addEventListener("click", () => {{
+        navMenu.classList.toggle("hidden");
       }});
     }});
   </script>
 </body>
+</html>
 """
 
-def generate_html_pages(essays_dir="content", output_dir="."):
-    os.makedirs(output_dir, exist_ok=True)
+def generate_html_pages(content_dir="content", output_dir="."):
+    # Collect all essay filenames
+    essays = [f for f in os.listdir(content_dir) if f.endswith(".md")]
+    essay_links = []
 
-    # gather and sort essay filenames
-    essay_files = sorted([f for f in os.listdir(essays_dir) if f.endswith(".md")])
-
-    if not essay_files:
-        print("No .md files found in", essays_dir)
-        return
-
-    # For each essay, build a sidebar links HTML that highlights (non-link) the current essay
-    for fname in essay_files:
+    # Prepare nav links
+    for fname in essays:
         base = os.path.splitext(fname)[0]
-        title = base.replace("_", " ").upper()
+        title = base.replace("_", " ").title()
+        essay_links.append(f'<li><a href="{base}.html">{title}</a></li>')
 
-        # build links HTML for this page (exclude self or render as bold)
-        links_items = []
-        for f in essay_files:
-            name = os.path.splitext(f)[0]
-            pretty = name.replace("_", " ").title()
-            if name == base:
-                links_items.append(f'<li><strong>{pretty}</strong></li>')
-            else:
-                links_items.append(f'<li><a href="{name}.html">{pretty}</a></li>')
-        links_html = "\n      ".join(links_items)
+    links_html = "\n        ".join(essay_links)
+
+    # Generate an HTML page for each essay
+    for fname in essays:
+        base = os.path.splitext(fname)[0]
+        title = base.replace("_", " ").title()
 
         html_content = TEMPLATE.format(title=title, filename=base, links=links_html)
         output_path = os.path.join(output_dir, f"{base}.html")

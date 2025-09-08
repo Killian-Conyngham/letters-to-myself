@@ -1,40 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Owao – Recursive Essays</title>
+  <link rel="stylesheet" href="styles.css" />
+</head>
 <body>
-  <button id="nav-toggle">☰ Essays</button>
-  <nav id="nav-menu">
-    <h2>All Essays</h2>
-    <ul>
-      <li><a href="OCCBP.html">Occbp</a></li>
-      <li><a href="OHMAN.html">Ohman</a></li>
-      <li><a href="OLP.html">Olp</a></li>
-      <li><a href="ORTTYAR.html">Orttyar</a></li>
-      <li><a href="ORVBUIB.html">Orvbuib</a></li>
-      <li><strong>Owao</strong></li>
-      <li><a href="OWTM.html">Owtm</a></li>
-    </ul>
-  </nav>
+  <div id="page-container">
+    <button id="nav-toggle">☰ Essays</button>
 
-  <div id="main-content"></div>
+    <nav id="nav-menu" class="hidden">
+      <h2>All Essays</h2>
+      <ul>
+        <li><a href="OCCBP.html">Occbp</a></li>
+        <li><a href="OHMAN.html">Ohman</a></li>
+        <li><a href="OLP.html">Olp</a></li>
+        <li><a href="ORTTYAR.html">Orttyar</a></li>
+        <li><a href="ORVBUIB.html">Orvbuib</a></li>
+        <li><a href="OWAO.html">Owao</a></li>
+        <li><a href="OWTM.html">Owtm</a></li>
+      </ul>
+    </nav>
+
+    <main id="main-content"></main>
+  </div>
 
   <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
   <script src="scripts/expand.js"></script>
   <script>
-    window.addEventListener("DOMContentLoaded", function () {
+    document.addEventListener("DOMContentLoaded", () => {
       const main = document.getElementById("main-content");
 
       fetch("content/OWAO.md")
-        .then((response) => response.text())
-        .then((markdown) => {
-          const html = marked.parse(markdown);
-          main.innerHTML = html;
-        })
-        .catch(() => {
-          main.innerText = "Failed to load essay.";
-        });
+        .then(res => res.text())
+        .then(md => main.innerHTML = marked.parse(md))
+        .catch(() => main.innerText = "Failed to load essay.");
 
-      // toggle nav
-      document.getElementById("nav-toggle").addEventListener("click", () => {
-        document.getElementById("nav-menu").classList.toggle("open");
+      const navToggle = document.getElementById("nav-toggle");
+      const navMenu = document.getElementById("nav-menu");
+
+      navToggle.addEventListener("click", () => {
+        navMenu.classList.toggle("hidden");
       });
     });
   </script>
 </body>
+</html>

@@ -64,41 +64,20 @@ a {
   transition: background-color 0.2s;
 }
 /* Sidebar navigation menu */
+#nav-menu.hidden {
+  display: none;
+}
+
 #nav-menu {
   position: fixed;
-  top: 0;
-  left: -260px; /* start hidden */
+  top: 60px;
+  left: 10px;
   width: 240px;
-  height: 100%;
-  background: #f9f9f9;
-  box-shadow: 2px 0 5px rgba(0,0,0,0.1);
+  background: #fff;
+  border: 1px solid #ddd;
   padding: 1rem;
-  overflow-y: auto;
-  transition: left 0.3s ease-in-out;
+  box-shadow: 2px 2px 8px rgba(0,0,0,0.2);
   z-index: 1000;
-}
-
-#nav-menu.open {
-  left: 0; /* slide in */
-}
-
-#nav-toggle {
-  position: fixed;
-  top: 1rem;
-  left: 1rem;
-  background: #333;
-  color: white;
-  border: none;
-  border-radius: 4px;
-  padding: 0.5rem 1rem;
-  font-size: 1.2rem;
-  cursor: pointer;
-  z-index: 1100;
-}
-
-#nav-menu h2 {
-  margin-top: 0;
-  font-size: 1.2rem;
 }
 
 #nav-menu ul {
@@ -106,21 +85,13 @@ a {
   padding-left: 0;
 }
 
-#nav-menu li {
+#nav-menu li a {
+  display: block;
+  text-decoration: none;
+  color: #333;
   margin: 0.5rem 0;
 }
 
-#nav-menu a {
-  display: block;       /* <<< ensures links stack vertically */
-  text-decoration: none;
-  color: #333;
-}
-
-#nav-menu a:hover {
-  color: #0077cc;
-}
-
-/* Ensure main content isn’t hidden behind fixed nav toggle */
 #main-content {
   margin: 2rem;
   max-width: 700px;
