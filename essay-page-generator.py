@@ -62,7 +62,7 @@ def generate_html_pages(content_dir="content", output_dir="."):
     # Generate an HTML page for each essay
     for fname in essays:
         base = os.path.splitext(fname)[0]
-        title = base.replace("_", " ").title()
+        title = base.replace("_", " ").upper()
 
         html_content = TEMPLATE.format(title=title, filename=base, links=links_html)
         output_path = os.path.join(output_dir, f"{base}.html")
