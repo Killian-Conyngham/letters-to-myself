@@ -8,13 +8,10 @@ TEMPLATE = """<!DOCTYPE html>
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>{title} – Recursive Essays</title>
   <link rel="stylesheet" href="styles.css" />
-</head><body>
+</head>
+<body>
   <!-- Hamburger toggle -->
-  <div id="nav-toggle">
-    <span></span>
-    <span></span>
-    <span></span>
-  </div>
+  <button id="nav-toggle" class="hamburger">☰ Essays</button>
 
   <!-- Sidebar menu (hidden by default) -->
   <nav id="nav-menu" class="hidden">
@@ -29,6 +26,7 @@ TEMPLATE = """<!DOCTYPE html>
   <!-- Markdown parsing -->
   <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
   <script src="scripts/expand.js"></script>
+
   <script>
     window.addEventListener("DOMContentLoaded", function () {{
       const main = document.getElementById("main-content");
@@ -43,13 +41,12 @@ TEMPLATE = """<!DOCTYPE html>
           main.innerText = "Failed to load essay.";
         }});
 
-      // Hamburger toggle behavior
+      // Simple toggle for sidebar
       const toggle = document.getElementById("nav-toggle");
       const nav = document.getElementById("nav-menu");
 
       toggle.addEventListener("click", () => {{
         nav.classList.toggle("visible");
-        toggle.classList.toggle("active");
       }});
     }});
   </script>
@@ -84,4 +81,3 @@ def generate_html_pages(content_dir="content", output_dir="."):
 
 if __name__ == "__main__":
     generate_html_pages()
-

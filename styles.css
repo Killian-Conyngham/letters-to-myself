@@ -46,6 +46,10 @@ a {
   text-decoration: none;
 }
 
+a:hover {
+  text-decoration: underline;
+}
+
 /* Optional: make recursive essays feel more "nested" visually */
 .expanded-essay .expanded-essay {
   border-color: #bbb;
@@ -65,26 +69,31 @@ a {
   text-decoration: none;
   transition: background-color 0.2s;
 }
-/* Sidebar navigation menu */
-#nav-menu.hidden {
-  display: none;
-}
 
+/* Sidebar navigation menu */
 #nav-menu {
   position: fixed;
   top: 60px;
   left: 10px;
   width: 240px;
+  max-height: 80vh;
+  overflow-y: auto;
   background: #fff;
   border: 1px solid #ddd;
   padding: 1rem;
   box-shadow: 2px 2px 8px rgba(0,0,0,0.2);
   z-index: 1000;
+  display: none; /* hidden by default */
+}
+
+#nav-menu.visible {
+  display: block;
 }
 
 #nav-menu ul {
   list-style: none;
   padding-left: 0;
+  margin: 0;
 }
 
 #nav-menu li a {
@@ -93,37 +102,21 @@ a {
   color: #333;
   margin: 0.5rem 0;
 }
+
+/* Simple toggle button */
 #nav-toggle {
   position: fixed;
   top: 15px;
   left: 15px;
-  width: 35px;
-  height: 25px;
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
+  padding: 0.5rem 1rem;
+  font-size: 1rem;
+  background-color: #fff;
+  border: 1px solid #333;
+  border-radius: 4px;
   cursor: pointer;
   z-index: 1100;
 }
 
-#nav-toggle span {
-  display: block;
-  height: 4px;
-  width: 100%;
-  background-color: #333;
-  border-radius: 2px;
-  transition: all 0.3s ease;
-}
-
-/* Animate to X when open */
-#nav-toggle.active span:nth-child(1) {
-  transform: rotate(45deg) translate(6px, 6px);
-}
-
-#nav-toggle.active span:nth-child(2) {
-  opacity: 0;
-}
-
-#nav-toggle.active span:nth-child(3) {
-  transform: rotate(-45deg) translate(6px, -6px);
+#nav-toggle:hover {
+  background-color: #f0f0f0;
 }
