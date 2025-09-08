@@ -8,37 +8,48 @@ TEMPLATE = """<!DOCTYPE html>
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>{title} – Recursive Essays</title>
   <link rel="stylesheet" href="styles.css" />
-</head>
-<body>
-  <div id="page-container">
-    <button id="nav-toggle">☰ Essays</button>
-
-    <nav id="nav-menu" class="hidden">
-      <h2>All Essays</h2>
-      <ul>
-        {links}
-      </ul>
-    </nav>
-
-    <main id="main-content"></main>
+</head><body>
+  <!-- Hamburger toggle -->
+  <div id="nav-toggle">
+    <span></span>
+    <span></span>
+    <span></span>
   </div>
 
+  <!-- Sidebar menu (hidden by default) -->
+  <nav id="nav-menu" class="hidden">
+    <ul>
+      {links} <!-- placeholder for links to all essays -->
+    </ul>
+  </nav>
+
+  <!-- Main content -->
+  <div id="main-content"></div>
+
+  <!-- Markdown parsing -->
   <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
   <script src="scripts/expand.js"></script>
   <script>
-    document.addEventListener("DOMContentLoaded", () => {{
+    window.addEventListener("DOMContentLoaded", function () {{
       const main = document.getElementById("main-content");
 
       fetch("content/{filename}.md")
-        .then(res => res.text())
-        .then(md => main.innerHTML = marked.parse(md))
-        .catch(() => main.innerText = "Failed to load essay.");
+        .then((response) => response.text())
+        .then((markdown) => {{
+          const html = marked.parse(markdown);
+          main.innerHTML = html;
+        }})
+        .catch(() => {{
+          main.innerText = "Failed to load essay.";
+        }});
 
-      const navToggle = document.getElementById("nav-toggle");
-      const navMenu = document.getElementById("nav-menu");
+      // Hamburger toggle behavior
+      const toggle = document.getElementById("nav-toggle");
+      const nav = document.getElementById("nav-menu");
 
-      navToggle.addEventListener("click", () => {{
-        navMenu.classList.toggle("hidden");
+      toggle.addEventListener("click", () => {{
+        nav.classList.toggle("visible");
+        toggle.classList.toggle("active");
       }});
     }});
   </script>

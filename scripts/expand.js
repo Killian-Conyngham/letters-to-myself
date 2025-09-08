@@ -96,3 +96,13 @@
     // otherwise, let default behavior occur (e.g., links that open in new tab)
   });
 })();
+
+const toggle = document.getElementById("nav-toggle");
+const nav = document.getElementById("nav-menu");
+const main = document.getElementById("main-content");
+
+toggle.addEventListener("click", () => {
+  nav.classList.toggle("visible");
+  main.classList.toggle("shifted");
+  toggle.classList.toggle("active");  // animate hamburger
+});

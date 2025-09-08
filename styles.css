@@ -93,3 +93,37 @@ a {
   color: #333;
   margin: 0.5rem 0;
 }
+#nav-toggle {
+  position: fixed;
+  top: 15px;
+  left: 15px;
+  width: 35px;
+  height: 25px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  cursor: pointer;
+  z-index: 1100;
+}
+
+#nav-toggle span {
+  display: block;
+  height: 4px;
+  width: 100%;
+  background-color: #333;
+  border-radius: 2px;
+  transition: all 0.3s ease;
+}
+
+/* Animate to X when open */
+#nav-toggle.active span:nth-child(1) {
+  transform: rotate(45deg) translate(6px, 6px);
+}
+
+#nav-toggle.active span:nth-child(2) {
+  opacity: 0;
+}
+
+#nav-toggle.active span:nth-child(3) {
+  transform: rotate(-45deg) translate(6px, -6px);
+}
