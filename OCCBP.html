@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>OLP – Letters to Myself</title>
+  <title>OCCBP – Letters to Myself</title>
   <link rel="stylesheet" href="../styles.css" />
 </head>
 <body>
@@ -11,9 +11,9 @@
   <nav id="nav-menu">
     <h2>All Essays</h2>
     <ul>
-      <li><a href="OCCBP.html">Occbp</a></li>
+      <li><strong>Occbp</strong></li>
       <li><a href="OHMAN.html">Ohman</a></li>
-      <li><strong>Olp</strong></li>
+      <li><a href="OLP.html">Olp</a></li>
       <li><a href="ORTTYAR.html">Orttyar</a></li>
       <li><a href="ORVBUIB.html">Orvbuib</a></li>
       <li><a href="OWAO.html">Owao</a></li>
@@ -29,7 +29,7 @@
     window.addEventListener("DOMContentLoaded", function () {
       const main = document.getElementById("main-content");
 
-      fetch("../essays/OLP.md")
+      fetch("../essays/OCCBP.md")
         .then((response) => response.text())
         .then((markdown) => {
           const html = marked.parse(markdown);

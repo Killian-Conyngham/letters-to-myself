@@ -3,19 +3,33 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Orttyar – Recursive Essays</title>
-  <link rel="stylesheet" href="styles.css" />
+  <title>ORTTYAR – Letters to Myself</title>
+  <link rel="stylesheet" href="../styles.css" />
 </head>
 <body>
+  <button id="nav-toggle">☰ Essays</button>
+  <nav id="nav-menu">
+    <h2>All Essays</h2>
+    <ul>
+      <li><a href="OCCBP.html">Occbp</a></li>
+      <li><a href="OHMAN.html">Ohman</a></li>
+      <li><a href="OLP.html">Olp</a></li>
+      <li><strong>Orttyar</strong></li>
+      <li><a href="ORVBUIB.html">Orvbuib</a></li>
+      <li><a href="OWAO.html">Owao</a></li>
+      <li><a href="OWTM.html">Owtm</a></li>
+    </ul>
+  </nav>
+
   <div id="main-content"></div>
 
   <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
-  <script src="scripts/expand.js"></script>
+  <script src="../scripts/expand.js"></script>
   <script>
     window.addEventListener("DOMContentLoaded", function () {
       const main = document.getElementById("main-content");
 
-      fetch("content/ORTTYAR.md")
+      fetch("../essays/ORTTYAR.md")
         .then((response) => response.text())
         .then((markdown) => {
           const html = marked.parse(markdown);
@@ -24,6 +38,13 @@
         .catch(() => {
           main.innerText = "Failed to load essay.";
         });
+
+      // Navigation toggle
+      const toggle = document.getElementById("nav-toggle");
+      const menu = document.getElementById("nav-menu");
+      toggle.addEventListener("click", function () {
+        menu.classList.toggle("open");
+      });
     });
   </script>
 </body>
