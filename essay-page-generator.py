@@ -26,7 +26,7 @@ TEMPLATE = """<!DOCTYPE html>
     window.addEventListener("DOMContentLoaded", function () {{
       const main = document.getElementById("main-content");
 
-      fetch("../essays/{filename}.md")
+      fetch("../content/{filename}.md")
         .then((response) => response.text())
         .then((markdown) => {{
           const html = marked.parse(markdown);

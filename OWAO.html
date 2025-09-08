@@ -29,7 +29,7 @@
     window.addEventListener("DOMContentLoaded", function () {
       const main = document.getElementById("main-content");
 
-      fetch("../essays/OWAO.md")
+      fetch("../content/OWAO.md")
         .then((response) => response.text())
         .then((markdown) => {
           const html = marked.parse(markdown);
