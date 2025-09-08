@@ -111,10 +111,17 @@ a {
 }
 
 #nav-menu a {
+  display: block;       /* <<< ensures links stack vertically */
   text-decoration: none;
   color: #333;
 }
 
 #nav-menu a:hover {
   color: #0077cc;
+}
+
+/* Ensure main content isn’t hidden behind fixed nav toggle */
+#main-content {
+  margin: 2rem;
+  max-width: 700px;
 }

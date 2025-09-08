@@ -1,15 +1,7 @@
 # essay-page-generator.py
 import os
 
-TEMPLATE = """<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>{title} – Letters to Myself</title>
-  <link rel="stylesheet" href="../styles.css" />
-</head>
-<body>
+TEMPLATE = """<body>
   <button id="nav-toggle">☰ Essays</button>
   <nav id="nav-menu">
     <h2>All Essays</h2>
@@ -21,12 +13,12 @@ TEMPLATE = """<!DOCTYPE html>
   <div id="main-content"></div>
 
   <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
-  <script src="../scripts/expand.js"></script>
+  <script src="scripts/expand.js"></script>
   <script>
     window.addEventListener("DOMContentLoaded", function () {{
       const main = document.getElementById("main-content");
 
-      fetch("../content/{filename}.md")
+      fetch("content/{filename}.md")
         .then((response) => response.text())
         .then((markdown) => {{
           const html = marked.parse(markdown);
@@ -36,16 +28,13 @@ TEMPLATE = """<!DOCTYPE html>
           main.innerText = "Failed to load essay.";
         }});
 
-      // Navigation toggle
-      const toggle = document.getElementById("nav-toggle");
-      const menu = document.getElementById("nav-menu");
-      toggle.addEventListener("click", function () {{
-        menu.classList.toggle("open");
+      // toggle nav
+      document.getElementById("nav-toggle").addEventListener("click", () => {{
+        document.getElementById("nav-menu").classList.toggle("open");
       }});
     }});
   </script>
 </body>
-</html>
 """
 
 def generate_html_pages(essays_dir="content", output_dir="."):
