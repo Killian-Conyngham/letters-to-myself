@@ -6,7 +6,7 @@ TEMPLATE = """<!DOCTYPE html>
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>{title} – Recursive Essays</title>
+  <title>{title} – Letters to Myself</title>
   <link rel="stylesheet" href="styles.css" />
 </head>
 <body>
@@ -62,7 +62,7 @@ def generate_html_pages(content_dir="content", output_dir="."):
     # Prepare nav links
     for fname in essays:
         base = os.path.splitext(fname)[0]
-        title = base.replace("_", " ").title()
+        title = base.replace("_", " ").upper()
         essay_links.append(f'<li><a href="{base}.html">{title}</a></li>')
 
     links_html = "\n        ".join(essay_links)
