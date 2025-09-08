@@ -97,12 +97,17 @@
   });
 })();
 
-const toggle = document.getElementById("nav-toggle");
-const nav = document.getElementById("nav-menu");
-const main = document.getElementById("main-content");
+// Hamburger toggle
+document.addEventListener("DOMContentLoaded", () => {
+  const toggle = document.getElementById("nav-toggle");
+  const nav = document.getElementById("nav-menu");
+  const main = document.getElementById("main-content");
 
-toggle.addEventListener("click", () => {
-  nav.classList.toggle("visible");
-  main.classList.toggle("shifted");
-  toggle.classList.toggle("active");  // animate hamburger
+  if (toggle && nav && main) {
+    toggle.addEventListener("click", () => {
+      nav.classList.toggle("visible");
+      main.classList.toggle("shifted");
+      toggle.classList.toggle("active");
+    });
+  }
 });
