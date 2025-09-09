@@ -35,7 +35,7 @@
       const mainContainer = document.getElementById("main-content");
 
       // Load main OHMAN essay
-      const text = await fetch("content/OHMAN_main.md").then(r => r.text());
+      const text = await fetch("content/OHMAN.md").then(r => r.text());
       mainContainer.innerHTML = `<div class="essay-container">${marked.parse(text)}</div>`;
 
       // Access the ending switcher directly (assumes <span id="ending-switch"> in Markdown)
