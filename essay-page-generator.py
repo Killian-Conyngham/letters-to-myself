@@ -61,9 +61,13 @@ def generate_html_pages(content_dir="content", output_dir="."):
 
     # Prepare nav links
     for fname in essays:
-        base = os.path.splitext(fname)[0]
-        title = base.replace("_", " ").upper()
-        essay_links.append(f'<li><a href="{base}.html">{title}</a></li>')
+      base = os.path.splitext(fname)[0]
+      title = base.replace("_", " ").upper()
+      if base.upper() == "OHMAN":
+          # Point OHMAN to index.html instead of ohman.html
+          essay_links.append(f'<li><a href="index.html">{title}</a></li>')
+      else:
+          essay_links.append(f'<li><a href="{base}.html">{title}</a></li>')
 
     links_html = "\n        ".join(essay_links)
 
@@ -78,6 +82,15 @@ def generate_html_pages(content_dir="content", output_dir="."):
         with open(output_path, "w", encoding="utf-8") as f:
             f.write(html_content)
         print(f"✅ Created: {output_path}")
+    # Update index.html navbar with links
+    index_path = os.path.join(output_dir, "index.html")
+    if os.path.exists(index_path):
+        with open(index_path, "r", encoding="utf-8") as f:
+            index_html = f.read()
+        index_html = index_html.replace("<!-- placeholder -->", links_html)
+        with open(index_path, "w", encoding="utf-8") as f:
+            f.write(index_html)
+        print("✅ Updated: index.html with nav links")
 
 if __name__ == "__main__":
     generate_html_pages()
