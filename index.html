@@ -32,47 +32,58 @@
 
   <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
   <script>
-    async function loadMainEssay() {
-      const mainContainer = document.getElementById("main-content");
-      const text = await fetch("content/OHMAN.md").then(r => r.text());
-      mainContainer.innerHTML = marked.parse(text);
+  async function loadMainEssay() {
+    const mainContainer = document.getElementById("main-content");
 
-      // Set up the special ending switcher
-      const switcher = document.getElementById("ending-switch");
-      if (switcher) {
-        const endingDiv = document.createElement("div");
-        endingDiv.id = "ending-container";
-        mainContainer.appendChild(endingDiv);
+    // Load main OHMAN content
+    const text = await fetch("content/OHMAN_main.md").then(r => r.text());
+    const mainDiv = document.createElement("div");
+    mainDiv.className = "essay-container";
+    mainDiv.innerHTML = marked.parse(text);
+    mainContainer.appendChild(mainDiv);
 
-        const endings = ["content/alt_endings/OHMAN_end1.md", "content/alt_endings/OHMAN_end2.md"];
-        let currentEnding = Math.random() < 0.5 ? 0 : 1;
+    // Set up the special ending switcher
+    const switcher = document.getElementById("ending-switch");
+    if (switcher) {
+      const endingDiv = document.createElement("div");
+      endingDiv.id = "ending-container";
+      endingDiv.className = "essay-container ohman-ending";
+      mainContainer.appendChild(endingDiv);
 
-        async function showEnding(index) {
-          const md = await fetch(endings[index]).then(r => r.text());
-          endingDiv.innerHTML = marked.parse(md);
-          currentEnding = index;
-        }
+      const endings = [
+        "content/alt_endings/OHMAN_end1.md",
+        "content/alt_endings/OHMAN_end2.md"
+      ];
+      let currentEnding = Math.random() < 0.5 ? 0 : 1;
 
-        // Show one ending initially
-        showEnding(currentEnding);
-
-        // Toggle on click
-        switcher.addEventListener("click", (e) => {
-          e.preventDefault();
-          const newIndex = currentEnding === 0 ? 1 : 0;
-          showEnding(newIndex);
-        });
+      async function showEnding(index) {
+        const md = await fetch(endings[index]).then(r => r.text());
+        endingDiv.innerHTML = marked.parse(md);
+        currentEnding = index;
       }
+
+      // Show one ending initially
+      showEnding(currentEnding);
+
+      // Toggle on click
+      switcher.addEventListener("click", (e) => {
+        e.preventDefault();
+        const newIndex = currentEnding === 0 ? 1 : 0;
+        showEnding(newIndex);
+      });
     }
+  }
 
-    // Nav toggle
-    document.getElementById("nav-toggle").addEventListener("click", function() {
-      this.classList.toggle("active");
-      document.getElementById("nav-menu").classList.toggle("hidden");
-    });
+  // Sidebar toggle
+  document.getElementById("nav-toggle").addEventListener("click", function() {
+    this.classList.toggle("active");
+    document.getElementById("nav-menu").classList.toggle("hidden");
+  });
 
-    loadMainEssay();
+  // Load everything
+  loadMainEssay();
   </script>
+
 </body>
 </html>
 
