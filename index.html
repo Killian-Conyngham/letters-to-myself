@@ -34,7 +34,7 @@
   <script>
     async function loadMainEssay() {
       const mainContainer = document.getElementById("main-content");
-      const text = await fetch("content/OHMAN_main.md").then(r => r.text());
+      const text = await fetch("content/OHMAN.md").then(r => r.text());
       mainContainer.innerHTML = marked.parse(text);
 
       // Set up the special ending switcher
