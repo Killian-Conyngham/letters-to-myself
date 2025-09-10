@@ -23,6 +23,18 @@
     </ul>
   </nav>
 
+  <!-- Preamble popup -->
+  <div id="preamble" class="preamble hidden">
+    <div class="preamble-content">
+      <h2>Welcome</h2>
+      <p>
+        This project is a set of letters to myself. The central essay is OHMAN,
+        with others branching out from it. Enjoy exploring.
+      </p>
+      <button id="close-preamble">Close</button>
+    </div>
+  </div>
+
   <!-- Main content -->
   <div id="main-content"></div>
 
@@ -80,5 +92,22 @@
 
     loadMainEssay();
   </script>
+  
+<script>
+  window.addEventListener("DOMContentLoaded", () => {
+    const preamble = document.getElementById("preamble");
+    const closeBtn = document.getElementById("close-preamble");
+
+    // Only show if not seen before
+    if (!localStorage.getItem("preambleSeen")) {
+      preamble.classList.remove("hidden");
+    }
+
+    closeBtn.addEventListener("click", () => {
+      preamble.classList.add("hidden");
+      localStorage.setItem("preambleSeen", "true");
+    });
+  });
+</script>
 </body>
 </html>
