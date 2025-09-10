@@ -125,7 +125,6 @@ a:hover {
 /* OHMAN Ending switch button */
 #ending-switch {
   cursor: pointer;
-  font-weight: bold;
   border: 1px solid #0077cc;
   border-radius: 4px;
   padding: 2px 6px;
