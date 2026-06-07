@@ -1,4 +1,5 @@
 import os
+import re
 
 # HTML template for each essay page
 TEMPLATE = """<!DOCTYPE html>
@@ -76,18 +77,40 @@ def generate_html_pages(content_dir="content", output_dir="."):
         base = os.path.splitext(fname)[0]
         title = base.replace("_", " ").upper()
 
-        html_content = TEMPLATE.format(title=title, filename=base, links=links_html)
-        output_path = os.path.join(output_dir, f"{base}.html")
+        if base.upper() == "OHMAN":
+            # OHMAN.html redirects to index.html (which has preamble + alt endings)
+            html_content = f"""<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta http-equiv="refresh" content="0; url=index.html" />
+  <title>{title} – Letters to Myself</title>
+</head>
+<body>
+  <p>Redirecting to <a href="index.html">index.html</a>…</p>
+</body>
+</html>
+"""
+        else:
+            html_content = TEMPLATE.format(title=title, filename=base, links=links_html)
 
+        output_path = os.path.join(output_dir, f"{base}.html")
         with open(output_path, "w", encoding="utf-8") as f:
             f.write(html_content)
         print(f"✅ Created: {output_path}")
-    # Update index.html navbar with links
+
+    # Update index.html navbar using marker comments
     index_path = os.path.join(output_dir, "index.html")
     if os.path.exists(index_path):
         with open(index_path, "r", encoding="utf-8") as f:
             index_html = f.read()
-        index_html = index_html.replace("<!-- placeholder -->", links_html)
+        new_nav = f"<!-- nav-links-start -->\n      {links_html}\n      <!-- nav-links-end -->"
+        index_html = re.sub(
+            r"<!-- nav-links-start -->.*?<!-- nav-links-end -->",
+            new_nav,
+            index_html,
+            flags=re.DOTALL,
+        )
         with open(index_path, "w", encoding="utf-8") as f:
             f.write(index_html)
         print("✅ Updated: index.html with nav links")

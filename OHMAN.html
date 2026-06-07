@@ -2,58 +2,10 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <meta http-equiv="refresh" content="0; url=index.html" />
   <title>OHMAN – Letters to Myself</title>
-  <link rel="stylesheet" href="styles.css" />
 </head>
 <body>
-  <!-- Hamburger toggle -->
-  <button id="nav-toggle" class="hamburger">☰ Essays</button>
-
-  <!-- Sidebar menu (hidden by default) -->
-  <nav id="nav-menu" class="hidden">
-    <ul>
-      <li><a href="OCCBP.html">OCCBP</a></li>
-        <li><a href="index.html">OHMAN</a></li>
-        <li><a href="OLP.html">OLP</a></li>
-        <li><a href="OPSMAL.html">OPSMAL</a></li>
-        <li><a href="ORTTYAR.html">ORTTYAR</a></li>
-        <li><a href="ORVBUIB.html">ORVBUIB</a></li>
-        <li><a href="OTDAATOTIDKAA.html">OTDAATOTIDKAA</a></li>
-        <li><a href="OWAO.html">OWAO</a></li>
-        <li><a href="OWTM.html">OWTM</a></li> <!-- placeholder for links to all essays -->
-    </ul>
-  </nav>
-
-  <!-- Main content -->
-  <div id="main-content"></div>
-
-  <!-- Markdown parsing -->
-  <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
-  <script src="scripts/expand.js"></script>
-
-  <script>
-    window.addEventListener("DOMContentLoaded", function () {
-      const main = document.getElementById("main-content");
-
-      fetch("content/OHMAN.md")
-        .then((response) => response.text())
-        .then((markdown) => {
-          const html = marked.parse(markdown);
-          main.innerHTML = html;
-        })
-        .catch(() => {
-          main.innerText = "Failed to load essay.";
-        });
-
-      // Simple toggle for sidebar
-      const toggle = document.getElementById("nav-toggle");
-      const nav = document.getElementById("nav-menu");
-
-      toggle.addEventListener("click", () => {
-        nav.classList.toggle("visible");
-      });
-    });
-  </script>
+  <p>Redirecting to <a href="index.html">index.html</a>…</p>
 </body>
 </html>
