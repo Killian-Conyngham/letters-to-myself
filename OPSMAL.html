@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>OWTM – Letters to Myself</title>
+  <title>OPSMAL – Letters to Myself</title>
   <link rel="stylesheet" href="styles.css" />
 </head>
 <body>
@@ -36,7 +36,7 @@
     window.addEventListener("DOMContentLoaded", function () {
       const main = document.getElementById("main-content");
 
-      fetch("content/OWTM.md")
+      fetch("content/OPSMAL.md")
         .then((response) => response.text())
         .then((markdown) => {
           const html = marked.parse(markdown);
